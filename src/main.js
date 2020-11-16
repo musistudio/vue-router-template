@@ -2,7 +2,7 @@
  * @Author: jinhui.li
  * @Date: 2020-09-15 16:52:25
  * @LastEditors: jinhui.li
- * @LastEditTime: 2020-09-15 17:59:55
+ * @LastEditTime: 2020-11-16 16:25:57
  * @Description: 适配qiankun
  */
 import './public-path';
@@ -11,8 +11,11 @@ import App from "./App.vue";
 import routes from "./router";
 import store from "./store";
 import VueRouter from 'vue-router';
+import xbb from 'xbb-sdk'
 
 Vue.config.productionTip = false;
+
+Vue.prototype.$xbb = xbb
 
 let instance = null;
 let router = null;
@@ -37,18 +40,15 @@ if (!window.__POWERED_BY_QIANKUN__) {
   render();
 }
 
-export async function bootstrap() {
-  console.log('[vue] vue app bootstraped');
-}
+export const bootstrap = xbb.bootstrap;
+export const mount = xbb.mount;
+xbb.ready(render);
 
-export async function mount(props) {
-  console.log('[vue] props from main framework', props);
-  render(props);
-}
 
 export async function unmount() {
   instance.$destroy();
   instance.$el.innerHTML = '';
   instance = null;
   router = null;
+  return Promise.resolve();
 }
