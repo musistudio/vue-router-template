@@ -2,7 +2,7 @@
  * @Author: jinhui.li
  * @Date: 2020-09-15 16:52:25
  * @LastEditors: jinhui.li
- * @LastEditTime: 2020-11-16 16:25:57
+ * @LastEditTime: 2021-01-11 09:09:03
  * @Description: 适配qiankun
  */
 import './public-path'
@@ -23,8 +23,8 @@ let router = null
 function render (props = {}) {
   const { container } = props
   router = new VueRouter({
-    base: window.__POWERED_BY_QIANKUN__ ? '/purehtml' : '/',
-    mode: 'history',
+    base: window.__POWERED_BY_QIANKUN__ ? '/cloudcode' : '/',
+    mode: 'hash',
     routes
   })
 
